@@ -4,6 +4,7 @@ const cookieParser=require('cookie-parser');
 const connectToDb = require('./config/database.js');
 const user=require('./routes/user.js');
 const problem=require('./routes/problem.js');
+require("dotenv").config();
 
 const app =express();
 // include middlewares. 
