@@ -6,8 +6,8 @@ exports.signup = async (req, res) => {
   try {
     //Get the data from the request
     //console.log(req.body);
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { name, email, password ,role} = req.body;
+    if (!name || !email || !password || !role ) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -38,6 +38,7 @@ exports.signup = async (req, res) => {
     const user = await User.create({
       name,
       email,
+      role,
       password: hashPassword,
       ProblemList: [],
     });
@@ -56,7 +57,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    console.log(req.body);
+    //console.log(req.body);
 
     const { email, password } = req.body;
     if (!email || !password) {
@@ -83,6 +84,7 @@ exports.login = async (req, res) => {
     const payload = {
       email: user.email,
       name: user.name,
+      role:user.role,
       id: user._id,
     };
 
