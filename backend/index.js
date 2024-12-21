@@ -19,7 +19,7 @@ connectToDb();
 
 // declare the routes
 app.use("/api/v1",user);
-//app.use("/api/v2",problem);
+app.use("/api/v2",problem);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on ${PORT}`);
