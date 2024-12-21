@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Testcase = require('../models/TestCase.js');
 const Problem = require('../models/Problem.js');
 
+// create problem (admin only)
 exports.createProblem = async(req,res)=>{
     try {
         const {problemName,problemStatement,difficulty,testCases}=req.body;
@@ -60,6 +61,7 @@ exports.createProblem = async(req,res)=>{
     }
 }
 
+// delete problem (admin only)
 exports.deleteProblem = async (req, res) => {
     try {
         const id = req.params.id;
@@ -88,6 +90,51 @@ exports.deleteProblem = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Failed to delete problem",
+        });
+    }
+};
+
+// get all problem
+exports.getAllProblems = async (req, res) => {
+    try {
+      const problems = await Problem.find({});
+  
+      return res.status(200).json({
+        success: true,
+        problems,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        success: false,
+        message: "Error in accessing the problems",
+      });
+    }
+  };
+
+// get problem by id
+exports.getProblemById = async(req,res) =>{
+    try {
+        const id=req.params.id;
+
+        const problem = await Problem.findById(id).populate('testCases');
+        if(!problem){
+            return res.status(404).json({
+                success:true,
+                message:"Problem not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Problem fetched successfully",
+            problem,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch problem",
         });
     }
 };
