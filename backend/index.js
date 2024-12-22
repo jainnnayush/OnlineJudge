@@ -10,7 +10,10 @@ const app =express();
 // include middlewares. 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from this origin
+    credentials: true,              // Allow credentials (cookies, headers)
+}));
 app.use(cookieParser());
 
 const PORT = process.env.PORT || 3000;
