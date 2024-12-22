@@ -34,10 +34,10 @@ const Login = () => {
                 localStorage.setItem('token',token);
 
                 if(user.role==='Admin'){
-                    navigate('/');
+                    navigate('/AdminDashboard');
                 }
                 else{
-                    navigate('/');
+                    navigate('/UserDashboard');
                 }
                 handleLoginSuccess();
 

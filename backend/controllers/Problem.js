@@ -98,7 +98,7 @@ exports.deleteProblem = async (req, res) => {
 exports.getAllProblems = async (req, res) => {
     try {
       const problems = await Problem.find({});
-  
+        console.log(problems);
       return res.status(200).json({
         success: true,
         problems,
