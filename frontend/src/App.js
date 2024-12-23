@@ -8,6 +8,8 @@ import Homepage from './components/Homepage';
 import Signup from './components/Signup';
 import UserDashboard from './components/UserDashboard';
 import AdminDashboard from './components/AdminDashboard';
+import CreateProblem from './components/CreateProblem';
+import EditProblem from './components/EditProblem';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/signup'element={<Signup/>}/>
           <Route path='/UserDashboard' element={<UserDashboard/>}/>
           <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
+          <Route path='/create-problem' element={<CreateProblem/>}/>
+          <Route path="/problems/edit/:id" element={<EditProblem />} />
         </Routes>
       </Router>
     </div>
