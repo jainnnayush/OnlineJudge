@@ -10,6 +10,9 @@ import UserDashboard from './components/UserDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import CreateProblem from './components/CreateProblem';
 import EditProblem from './components/EditProblem';
+import Dashboard from './components/Dashboard';
+import ProblemDetails from './components/ProblemDetails';
+import SolveProblem from './components/SolveProblem';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
           <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
           <Route path='/create-problem' element={<CreateProblem/>}/>
           <Route path="/problems/edit/:id" element={<EditProblem />} />
+          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/problems/:id' element={<ProblemDetails/>}/>
+          <Route path='/solve-problem/:id' element={<SolveProblem/>}/>
         </Routes>
       </Router>
     </div>

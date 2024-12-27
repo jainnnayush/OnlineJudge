@@ -63,7 +63,7 @@ function UserDashboard() {
                 {problems.map((problem) => (
                   <li key={problem._id} className="border-b pb-4 flex justify-between items-center">
                     <Link
-                      to={`/problems/${problem._id}`}
+                      to={`/solve-problem/${problem._id}`}
                       className="text-xl text-indigo-600 hover:underline font-medium flex items-center"
                     >
                       {problem.problemName}
