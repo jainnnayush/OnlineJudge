@@ -213,3 +213,33 @@ exports.updateProblem = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update problem", error: error.message });
   }
 };
+
+exports.getAllProblemsWithUserStatus = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const problems = await Problem.find();
+    const solutions = await Solution.find({ user: userId });
+
+    const problemsWithStatus = problems.map((problem) => {
+      const solved = solutions.some(solution => 
+        solution.problem.toString() === problem._id.toString() && solution.verdict === 'Accepted'
+      );
+
+      return {
+        ...problem.toObject(),
+        solved,
+      };
+    });
+
+    return res.status(200).json({
+      success: true,
+      problems: problemsWithStatus,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Error in accessing the problems",
+    });
+  }
+};
